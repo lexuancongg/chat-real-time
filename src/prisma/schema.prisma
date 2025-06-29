@@ -15,7 +15,7 @@ model User {
   avatarUrl   String?
   status      Status   @default(OFFLINE)
   createdAt   DateTime @default(now())
-
+  
   friends     Friend[] @relation("UserFriends")
   friendOf    Friend[] @relation("UserFriends_Friend") 
   devices     Device[]
