@@ -1,3 +1,4 @@
+import {Request,Response,NextFunction} from 'express'
 const express = require('express')
 require('dotenv').config();
 const cors = require('cors');  
@@ -21,6 +22,14 @@ app.use(cookieParser())
 // app.use(morgan('combined'));     // log lại những yêu cầu request
 const PORT = 3000;
 route(app);
+
+
+
+app.use((err:Error, req : Request, res:Response, next : NextFunction) => {
+    console.error("Middleware lỗi:", err.message);
+    res.status(500).send("Lỗi rồi");
+});
+
 app.listen(PORT, () => console.log(`lang nghe tren cong${PORT}`));
 module.exports = app;
 
